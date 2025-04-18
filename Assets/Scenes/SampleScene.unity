@@ -802,11 +802,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48f8aff71046444c8bda2d599a174cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToSpawn: []
+  objectsToSpawn:
+  - {fileID: 1654020625963138219, guid: 32a25aaeb263423438ea72cc904f7910, type: 3}
+  - {fileID: 1844511393940878295, guid: a5344b98eb8749b48bd7eff8a8c3adae, type: 3}
+  - {fileID: 7833923683500900003, guid: 11ef6c955fb624a4aaf3b18597db22df, type: 3}
+  - {fileID: 2881479668610909691, guid: c67ed6360e72a9848a4bc876f41e5c51, type: 3}
+  - {fileID: 1521319932559390546, guid: 915ac35a5aca31d4c9575633be0f6b82, type: 3}
   terrain: {fileID: 2086601042}
-  numberOfObjects: 100
-  minScale: 0.8
-  maxScale: 1.5
+  numberOfObjects: 150
+  minScale: 1
+  maxScale: 2.5
 --- !u!4 &916468735
 Transform:
   m_ObjectHideFlags: 0
