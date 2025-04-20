@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 410087040}
-  dayDuration: 120
+  dayDuration: 5
 --- !u!4 &336899725
 Transform:
   m_ObjectHideFlags: 0
@@ -784,6 +784,7 @@ GameObject:
   - component: {fileID: 837369694}
   - component: {fileID: 837369693}
   - component: {fileID: 837369692}
+  - component: {fileID: 837369695}
   m_Layer: 0
   m_Name: RainEffect
   m_TagString: Untagged
@@ -815,7 +816,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: 5c56d682bb51f425ba0f9671be59a6ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -859,7 +860,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -1499,7 +1500,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 5
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1507,7 +1508,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 50, y: 1, z: 50}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2326,7 +2327,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2383,7 +2384,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5600,12 +5601,25 @@ Transform:
   m_GameObject: {fileID: 837369691}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 710.6679, y: 1.0293056, z: 698.7271}
+  m_LocalPosition: {x: 710.6679, y: 20, z: 698.7271}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &837369695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837369691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf96bd1cce3b4ba88eece0643ad5395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1244835282}
 --- !u!1 &916468733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5911,12 +5925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c6f04842db45f199d8074cdda1671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeather: 0
-  rainEffect: {fileID: 0}
+  currentWeather: 1
+  rainEffect: {fileID: 837369693}
   clouds: {fileID: 1000014264868206, guid: ca55dd9d7d291014a8b13aaf95318a3a, type: 3}
   directionalLight: {fileID: 410087040}
-  sunnySkybox: {fileID: 0}
-  cloudySkybox: {fileID: 0}
+  sunnySkybox: {fileID: 2100000, guid: 416ee80c6a09f9b4fb43d9aa43f4a057, type: 2}
+  cloudySkybox: {fileID: 2100000, guid: 97fca95f33987e548be9dd7c03cb1a96, type: 2}
 --- !u!4 &1481883058
 Transform:
   m_ObjectHideFlags: 0
