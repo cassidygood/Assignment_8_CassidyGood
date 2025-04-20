@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2a64d1f10f81744bfb80fab945a2697d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 410087040}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336899725}
-  - component: {fileID: 336899724}
+  - component: {fileID: 336899726}
   m_Layer: 0
   m_Name: DayNightManager
   m_TagString: Untagged
@@ -356,20 +356,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &336899724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336899723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032a6f4191a3541c6b371ffb168b80d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sun: {fileID: 410087040}
-  dayDuration: 5
 --- !u!4 &336899725
 Transform:
   m_ObjectHideFlags: 0
@@ -385,6 +371,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &336899726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336899723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032a6f4191a3541c6b371ffb168b80d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayDuration: 120
+  sun: {fileID: 410087040}
+  proceduralSkybox: {fileID: 2100000, guid: 2a64d1f10f81744bfb80fab945a2697d, type: 2}
+  daySkyTint: {r: 0, g: 1, b: 1, a: 1}
+  nightSkyTint: {r: 0.05, g: 0.05, b: 0.1, a: 1}
+  minExposure: 0.2
+  maxExposure: 1
 --- !u!1 &356755693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +1010,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 50
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1508,7 +1513,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 50, y: 1, z: 50}
+    m_Scale: {x: 45, y: 1, z: 50}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5925,11 +5930,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c6f04842db45f199d8074cdda1671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeather: 1
+  currentWeather: 0
   rainEffect: {fileID: 837369693}
   clouds: {fileID: 1000014264868206, guid: ca55dd9d7d291014a8b13aaf95318a3a, type: 3}
   directionalLight: {fileID: 410087040}
-  sunnySkybox: {fileID: 2100000, guid: 416ee80c6a09f9b4fb43d9aa43f4a057, type: 2}
+  sunnySkybox: {fileID: 2100000, guid: 2a64d1f10f81744bfb80fab945a2697d, type: 2}
   cloudySkybox: {fileID: 2100000, guid: 97fca95f33987e548be9dd7c03cb1a96, type: 2}
 --- !u!4 &1481883058
 Transform:
