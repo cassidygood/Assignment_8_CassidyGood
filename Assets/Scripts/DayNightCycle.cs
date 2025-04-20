@@ -36,16 +36,26 @@ public class DayNightCycle : MonoBehaviour
 
     void UpdateLighting()
     {
+        // Sun angle calculation
         float sunAngle = (currentTime / dayDuration) * 360f;
         sun.transform.rotation = Quaternion.Euler(sunAngle - 90, 170, 0);
 
+        // Lerp intensity and color based on the time of day
         float t = Mathf.InverseLerp(0f, dayDuration / 2f, currentTime);
         if (currentTime > dayDuration / 2f)
             t = Mathf.InverseLerp(dayDuration, dayDuration / 2f, currentTime);
 
+        // Update sun intensity and color (sun intensity decreases more at night)
         sun.intensity = Mathf.Lerp(0.05f, 1f, t);
         sun.color = Color.Lerp(Color.gray, Color.white, t);
 
+        // Ensure it gets darker during the night
+        if (currentTime > dayDuration / 2f) // It's night
+        {
+            sun.intensity = Mathf.Lerp(0f, 0.05f, Mathf.InverseLerp(dayDuration / 2f, dayDuration, currentTime)); // Ensure sun is very low
+        }
+
+        // Skybox adjustments based on day/night cycle
         if (proceduralSkybox != null)
         {
             proceduralSkybox.SetColor("_SkyTint", Color.Lerp(nightSkyTint, daySkyTint, t));
@@ -53,13 +63,10 @@ public class DayNightCycle : MonoBehaviour
         }
     }
 
-    // This method checks if it's night and updates the sleep state for animals
     void UpdateAnimalSleepState()
     {
-        // Nighttime is the second half of the day cycle (currentTime > half of dayDuration)
         bool isNight = currentTime > dayDuration / 2f;
 
-        // Set all animals' sleep state based on the time of day
         foreach (var animal in animals)
         {
             animal.SetSleeping(isNight);
