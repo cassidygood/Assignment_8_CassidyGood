@@ -5,10 +5,13 @@ public class AnimalWander : MonoBehaviour
 {
     public float wanderRadius = 10f;
     public float wanderTimer = 5f;
+    public Transform player;
+    public float barkDistance = 5f;
 
     private NavMeshAgent agent;
     private float timer;
     private bool isSleeping = false;
+    private bool hasBarked = false;
 
     void Start()
     {
@@ -20,6 +23,20 @@ public class AnimalWander : MonoBehaviour
     {
         if (isSleeping) return; // Skip movement when sleeping
 
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        // Bark once when player is close
+        if (distanceToPlayer < barkDistance && !hasBarked)
+        {
+            Object.FindFirstObjectByType<AnimalBarkUI>().ShowBark("Bark!");
+            hasBarked = true;
+        }
+        else if (distanceToPlayer >= barkDistance)
+        {
+            hasBarked = false; // reset barking ability when player moves away
+        }
+
+        // Wandering logic
         timer += Time.deltaTime;
         if (timer >= wanderTimer)
         {
@@ -32,10 +49,9 @@ public class AnimalWander : MonoBehaviour
     public void SetSleeping(bool sleep)
     {
         isSleeping = sleep;
-        agent.isStopped = sleep; // This will stop the animal's movement if it is sleeping
+        agent.isStopped = sleep;
     }
 
-    // Utility method to find a random point on the NavMesh
     Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
@@ -45,4 +61,3 @@ public class AnimalWander : MonoBehaviour
         return navHit.position;
     }
 }
-
