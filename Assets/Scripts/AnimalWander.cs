@@ -7,36 +7,44 @@ public class AnimalWander : MonoBehaviour
     public float wanderTimer = 5f;
     public Transform player;
     public float barkDistance = 5f;
+    public string[] barkLines = { "Bark!", "Woof!", "Grr!" };
 
     private NavMeshAgent agent;
     private float timer;
     private bool isSleeping = false;
     private bool hasBarked = false;
 
+    private AnimalBarkUI barkUI; // ✅ Declare UI reference
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
+
+        // ✅ Cache the bark UI object once for performance
+        barkUI = Object.FindFirstObjectByType<AnimalBarkUI>();
     }
 
     void Update()
     {
-        if (isSleeping) return; // Skip movement when sleeping
+        if (isSleeping) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Bark once when player is close
         if (distanceToPlayer < barkDistance && !hasBarked)
         {
-            Object.FindFirstObjectByType<AnimalBarkUI>().ShowBark("Bark!");
+            if (barkUI != null && barkLines.Length > 0)
+            {
+                int index = Random.Range(0, barkLines.Length);
+                barkUI.ShowBark(barkLines[index]);
+            }
             hasBarked = true;
         }
         else if (distanceToPlayer >= barkDistance)
         {
-            hasBarked = false; // reset barking ability when player moves away
+            hasBarked = false;
         }
 
-        // Wandering logic
         timer += Time.deltaTime;
         if (timer >= wanderTimer)
         {
