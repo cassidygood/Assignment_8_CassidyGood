@@ -1,33 +1,41 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
     public GameObject dialoguePanel;
-    public Button yesButton;
-    public Button noButton;
 
     private bool isDialogueActive = false;
 
     void Start()
     {
-        HideDialogue(); // Ensure everything is hidden at start
-
-        // Assign button click listeners
-        yesButton.onClick.AddListener(OnYesClicked);
-        noButton.onClick.AddListener(OnNoClicked);
+        HideDialogue();
     }
 
     public void StartDialogue()
     {
-        if (isDialogueActive) return; // Prevent dialogue from restarting
+        if (isDialogueActive) return;
         isDialogueActive = true;
 
         dialoguePanel.SetActive(true);
-        ShowButtons();
         ShowDialogue("Have you tamed any animals yet?");
+    }
+
+    void Update()
+    {
+        if (!isDialogueActive) return;
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            ShowDialogue("That's great! Have you named them?");
+            EndDialogue();
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            ShowDialogue("Would you like to know how to?");
+            EndDialogue();
+        }
     }
 
     public void ShowDialogue(string message)
@@ -35,43 +43,14 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = message;
     }
 
-    void OnYesClicked()
+    public void EndDialogue()
     {
-        Debug.Log("Yes clicked!");
-        ShowDialogue("That's great! Have you named them?");
-        EndDialogue();
-    }
-
-    void OnNoClicked()
-    {
-        Debug.Log("No clicked!");
-        ShowDialogue("Would you like to know how to?");
-        EndDialogue();
-    }
-
-    void ShowButtons()
-    {
-        yesButton.gameObject.SetActive(true);
-        noButton.gameObject.SetActive(true);
-    }
-
-    void HideButtons()
-    {
-        yesButton.gameObject.SetActive(false);
-        noButton.gameObject.SetActive(false);
+        isDialogueActive = false;
+        Invoke("HideDialogue", 2f); // Optional delay before hiding
     }
 
     void HideDialogue()
     {
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";
-        HideButtons();
-    }
-
-    public void EndDialogue()
-    {
-        isDialogueActive = false;
-        HideButtons();
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
     }
